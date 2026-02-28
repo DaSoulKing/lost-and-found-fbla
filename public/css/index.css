@@ -60,7 +60,7 @@
 
 /* stats strip */
 .hero-stats {
-  display: flex;
+  display: none;
   align-items: center;
   gap: 2.5rem;
   margin-top: 3.5rem;
@@ -230,4 +230,5 @@
     text-align: center;
     padding: 2rem 1.5rem;
   }
+
 }
