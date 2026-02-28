@@ -1,14 +1,53 @@
-// main.js - homepage only
-// fetches the 3 most recent approved items and renders them
-// in the "Recently found items" section
+// main.js
 
 document.addEventListener('DOMContentLoaded', () => {
+
+  // hamburger drawer
+  const toggle = document.getElementById('nav-toggle');
+  const navLinks = document.getElementById('nav-links');
+
+  // inject the backdrop div once
+  const backdrop = document.createElement('div');
+  backdrop.className = 'nav-backdrop';
+  backdrop.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(backdrop);
+
+  function openMenu() {
+    navLinks.classList.add('open');
+    backdrop.classList.add('open');
+    toggle.setAttribute('aria-expanded', 'true');
+    toggle.setAttribute('aria-label', 'Close menu');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    navLinks.classList.remove('open');
+    backdrop.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Open menu');
+    document.body.style.overflow = '';
+  }
+
+  if (toggle && navLinks) {
+    toggle.addEventListener('click', () => {
+      navLinks.classList.contains('open') ? closeMenu() : openMenu();
+    });
+
+    backdrop.addEventListener('click', closeMenu);
+
+    // close on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+  }
+
+  // recent items grid (index.html only)
   const grid = document.getElementById('recent-items-grid');
-  if (!grid) return; // only runs on index.html
+  if (!grid) return;
+
   fetch('/api/items')
     .then(res => res.json())
     .then(items => {
-      // API already returns newest-first, just take the first 3
       const recent = items.slice(0, 3);
       if (!recent.length) {
         grid.innerHTML = `
@@ -56,12 +95,15 @@ document.addEventListener('DOMContentLoaded', () => {
           Could not load recent items.
         </li>`;
     });
+
   function esc(s) {
     if (!s) return '';
     return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   }
+
   function fmtDate(s) {
     if (!s) return '';
     return new Date(s).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
   }
+
 });
