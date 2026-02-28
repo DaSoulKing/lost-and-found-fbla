@@ -79,7 +79,7 @@
     border-bottom: 1px solid var(--gray-200);
     padding: 1rem 1.5rem;
     position: sticky;
-    top: var(--nav-height);
+    top: 0;
     background: var(--white);
     z-index: 10;
   }
