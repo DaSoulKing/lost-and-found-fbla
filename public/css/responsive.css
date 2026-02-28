@@ -1,35 +1,61 @@
-/* responsive.css - all breakpoints in one place
-   tablet = 900px, mobile = 600px */
+/* responsive.css. tablet = 900px, mobile = 600px */
 
 /* Tablet */
 @media (max-width: 900px) {
-  /* nav: hide links, show hamburger */
+
+  /* slide-in drawer from the right */
   .nav-links {
-    display: none;
-    position: absolute;
-    top: var(--nav-height);
-    left: 0;
+    position: fixed;
+    top: 0;
     right: 0;
+    bottom: 0;
+    width: 280px;
     background: var(--white);
-    border-bottom: 1px solid var(--gray-200);
     flex-direction: column;
     align-items: stretch;
-    padding: .75rem 1.5rem 1.25rem;
-    gap: .125rem;
-    box-shadow: var(--shadow);
-  }
-
-  /* JS toggles this class to open the menu */
-  .nav-links.open {
+    padding: 5rem 1.5rem 2rem;
+    gap: 3rem;
+    box-shadow: -4px 0 24px rgba(0,0,0,.12);
+    transform: translateX(100%);
+    transition: transform .28s cubic-bezier(.4, 0, .2, 1);
+    z-index: 200;
     display: flex;
   }
 
+  .nav-links.open {
+    transform: translateX(0);
+  }
+
   .nav-links a {
-    padding: .75rem .875rem;
+    padding: 1rem 1rem;
+    border-radius: var(--radius);
+    font-size: 1rem;
+  }
+
+  .nav-links a:hover {
+    background: var(--off-white);
+  }
+
+  /* dim overlay behind the drawer */
+  .nav-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.35);
+    z-index: 150;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .28s ease;
+  }
+
+  .nav-backdrop.open {
+    z-index: 75;
+    opacity: 1;
+    pointer-events: auto;
   }
 
   .nav-toggle {
     display: flex;
+    z-index: 300;
   }
 
   /* footer: two columns */
@@ -155,5 +181,10 @@
   /* hide school name on tiny screens */
   .nav-logo-text span:last-child {
     display: none;
+  }
+
+  /* drawer is full width on small phones */
+  .nav-links {
+    width: 100%;
   }
 }
