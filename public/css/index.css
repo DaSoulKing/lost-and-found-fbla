@@ -58,35 +58,39 @@
   color: var(--white);
 }
 
-/* stats strip */
-.hero-stats {
-  display: none;
+/* trust bar under hero text */
+.hero-trust {
+  display: flex;
   align-items: center;
-  gap: 2.5rem;
+  gap: 2rem;
   margin-top: 3.5rem;
   padding-top: 2.5rem;
   border-top: 1px solid rgba(255,255,255,.12);
   flex-wrap: wrap;
 }
 
-.hero-stat-num {
-  display: block;
-  font-family: var(--font-display);
-  font-size: 2.25rem;
-  color: var(--white);
-  line-height: 1;
+.hero-trust-item {
+  display: flex;
+  align-items: center;
+  gap: .625rem;
+  font-size: .875rem;
+  color: rgba(255,255,255,.6);
 }
 
-.hero-stat-label {
-  display: block;
-  font-size: .8125rem;
-  color: rgba(255,255,255,.5);
-  margin-top: .25rem;
+.hero-trust-item svg {
+  width: 16px;
+  height: 16px;
+  stroke: #a3d9b5;
+  fill: none;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
 }
 
-.hero-stat-divider {
+.hero-trust-divider {
   width: 1px;
-  height: 40px;
+  height: 20px;
   background: rgba(255,255,255,.15);
 }
 
@@ -230,5 +234,4 @@
     text-align: center;
     padding: 2rem 1.5rem;
   }
-
 }
