@@ -1,4 +1,5 @@
-/* responsive.css. tablet = 900px, mobile = 600px */
+/* responsive.css - all breakpoints in one place
+   tablet = 900px, mobile = 600px */
 
 /* Tablet */
 @media (max-width: 900px) {
@@ -48,8 +49,8 @@
   }
 
   .nav-backdrop.open {
-    z-index: 75;
     opacity: 1;
+    z-index: 75;
     pointer-events: auto;
   }
 
@@ -68,7 +69,7 @@
     grid-column: 1 / -1;
   }
 
-  /* admin: collapse sidebar into top bar */
+  /* admin: stack layout vertically */
   .admin-layout {
     grid-template-columns: 1fr;
   }
@@ -77,6 +78,10 @@
     border-right: none;
     border-bottom: 1px solid var(--gray-200);
     padding: 1rem 1.5rem;
+    position: sticky;
+    top: var(--nav-height);
+    background: var(--white);
+    z-index: 10;
   }
 
   .admin-sidebar h3 {
@@ -89,8 +94,24 @@
     gap: .375rem;
   }
 
+  .admin-nav a {
+    font-size: .8125rem;
+    padding: .5rem .75rem;
+  }
+
   .admin-content {
     padding: 1.5rem;
+    min-width: 0;
+  }
+
+  .admin-page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .75rem;
+  }
+
+  .admin-page-title {
+    font-size: 1.375rem;
   }
 
   /* form: single column */
@@ -157,10 +178,50 @@
     grid-template-columns: 1fr 1fr;
   }
 
-  /* admin table: allow horizontal scroll */
+  /* admin table scrolls horizontally, never clips */
   .table-scroll {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+  }
+
+  /* tighten up table cells so they dont waste space */
+  .admin-table th,
+  .admin-table td {
+    padding: .625rem .75rem;
+    font-size: .8125rem;
+    white-space: nowrap;
+  }
+
+  .table-item-cell {
+    gap: .5rem;
+  }
+
+  .table-item-name {
+    max-width: 140px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* stack approve/reject buttons vertically */
+  .table-actions {
+    display: flex;
+    flex-direction: column;
+    gap: .375rem;
+  }
+
+  /* admin filter row: stack on mobile */
+  .admin-filter-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .admin-filter-row .search-input-wrap {
+    max-width: 100%;
+  }
+
+  .admin-filter-row select {
+    width: 100%;
   }
 
   /* hide less important columns on small screens */
