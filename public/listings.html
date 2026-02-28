@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Browse Items: Lost &amp; Found | William Floyd High</title>
+  <meta name="description" content="Search all found items at William Floyd High School. Filter by category, date, or keyword." />
+
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/pagestyles.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <header>
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo" aria-label="Lost and Found, William Floyd High, go to home">
+          <div class="nav-logo-icon" aria-hidden="true">
+            <img src="assets/logofloy-removebg-preview.png" alt="William Floyd Logo">
+          </div>
+          <div class="nav-logo-text">
+            <span>Lost &amp; Found</span>
+            <span>William Floyd High School</span>
+          </div>
+        </a>
+
+        <ul class="nav-links" id="nav-links" role="list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="listings.html" class="active" aria-current="page">Browse Items</a></li>
+          <li><a href="report.html">Report Found Item</a></li>
+          <li><a href="claim.html">Claim an Item</a></li>
+          <li><a href="admin.html" class="btn-nav btn">Admin</a></li>
+        </ul>
+
+        <button class="nav-toggle" id="nav-toggle"
+                aria-controls="nav-links"
+                aria-expanded="false"
+                aria-label="Open menu">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <line x1="3" y1="6"  x2="21" y2="6"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <div class="page-hero">
+      <div class="page-hero-inner">
+        <h1>Browse Found Items</h1>
+        <p>Search below to find your missing item. If you spot it, click Claim to start the verification process.</p>
+      </div>
+    </div>
+
+    <div class="listings-controls" role="search" aria-label="Search and filter found items">
+      <div class="container">
+
+        <div class="search-bar">
+          <div class="search-input-wrap">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="11" cy="11" r="7"/>
+              <line x1="16.5" y1="16.5" x2="22" y2="22"/>
+            </svg>
+            <input
+              type="search"
+              id="search-input"
+              placeholder="Search by name, description, location..."
+              aria-label="Search found items"
+              autocomplete="off"
+            />
+          </div>
+          <button class="btn btn-primary" id="search-btn" aria-label="Submit search">
+            Search
+          </button>
+        </div>
+
+        <div class="filter-row" role="group" aria-label="Filter options">
+
+          <label for="filter-category" class="sr-only">Filter by category</label>
+          <select id="filter-category" aria-label="Filter by category">
+            <option value="">All categories</option>
+            <option value="electronics">Electronics</option>
+            <option value="clothing">Clothing</option>
+            <option value="bags">Bags &amp; Backpacks</option>
+            <option value="stationery">Stationery &amp; Books</option>
+            <option value="sports">Sports &amp; Gym</option>
+            <option value="other">Other</option>
+          </select>
+
+          <label for="filter-date" class="sr-only">Filter by date found</label>
+          <select id="filter-date" aria-label="Filter by date range">
+            <option value="">Any date</option>
+            <option value="7">Last 7 days</option>
+            <option value="30">Last 30 days</option>
+            <option value="90">Last 90 days</option>
+          </select>
+
+          <label for="filter-status" class="sr-only">Filter by status</label>
+          <select id="filter-status" aria-label="Filter by item status">
+            <option value="approved">Available only</option>
+            <option value="all">All items</option>
+          </select>
+
+        </div>
+
+        <p class="results-count" id="results-count" aria-live="polite" aria-atomic="true">
+          Showing 6 items
+        </p>
+
+      </div>
+    </div>
+
+    <section class="listings-body" aria-labelledby="listings-heading">
+      <div class="container">
+
+        <h2 class="sr-only" id="listings-heading">Found items listing</h2>
+
+        <ul class="items-grid" id="items-grid" role="list" aria-label="Found items">
+          <!-- items rendered by listings.js -->
+        </ul>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <div class="nav-logo-icon" aria-hidden="true">
+            <img src="assets/logofloy-removebg-preview.png" alt="William Floyd Logo">
+          </div>
+          <div class="nav-logo-text">
+            <span>Lost &amp; Found</span>
+            <span>William Floyd High School</span>
+          </div>
+        </a>
+        <p>Helping the William Floyd community reunite students with their belongings since 2026.</p>
+      </div>
+      <div>
+        <h4>Quick links</h4>
+        <ul class="footer-links" role="list">
+          <li><a href="listings.html">Browse items</a></li>
+          <li><a href="report.html">Report an item</a></li>
+          <li><a href="claim.html">Claim an item</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Info</h4>
+        <ul class="footer-links" role="list">
+          <li><a href="admin.html">Admin login</a></li>
+          <li><a href="#">Main office</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 William Floyd High School Lost &amp; Found.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/listings.js"></script>
+
+</body>
+</html>

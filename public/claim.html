@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Claim an Item: Lost &amp; Found | William Floyd High</title>
+  <meta name="description" content="Claim a lost item by answering a verification question to prove ownership." />
+
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/pagestyles.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <header>
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo" aria-label="Lost and Found, William Floyd High, go to home">
+          <div class="nav-logo-icon" aria-hidden="true">
+            <img src="assets/logofloy.jpg" alt="William Floyd Logo">
+          </div>
+          <div class="nav-logo-text">
+            <span>Lost &amp; Found</span>
+            <span>William Floyd High School</span>
+          </div>
+        </a>
+
+        <ul class="nav-links" id="nav-links" role="list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="listings.html">Browse Items</a></li>
+          <li><a href="report.html">Report Found Item</a></li>
+          <li><a href="claim.html" class="active" aria-current="page">Claim an Item</a></li>
+          <li><a href="admin.html" class="btn-nav btn">Admin</a></li>
+        </ul>
+
+        <button class="nav-toggle" id="nav-toggle"
+                aria-controls="nav-links"
+                aria-expanded="false"
+                aria-label="Open menu">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <line x1="3" y1="6"  x2="21" y2="6"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <div class="page-hero">
+      <div class="page-hero-inner">
+        <h1>Claim an Item</h1>
+        <p>Think you see your item in our listings? Answer a quick verification question to prove it's yours.</p>
+      </div>
+    </div>
+
+    <section class="claim-section">
+      <div class="container">
+        <div class="claim-layout">
+
+          <div class="claim-main">
+
+            <div class="steps" role="list" aria-label="Claim form progress">
+              <div class="step active" role="listitem">
+                <span class="step-num" aria-label="Step 1 of 3, current">1</span>
+                <span class="step-label">Find item</span>
+              </div>
+              <div class="step-line"></div>
+              <div class="step" role="listitem">
+                <span class="step-num" aria-label="Step 2 of 3">2</span>
+                <span class="step-label">Verify</span>
+              </div>
+              <div class="step-line"></div>
+              <div class="step" role="listitem">
+                <span class="step-num" aria-label="Step 3 of 3">3</span>
+                <span class="step-label">Your info</span>
+              </div>
+            </div>
+
+            <div class="form-panel">
+
+              <form id="claim-form" novalidate aria-label="Claim an item form">
+
+                <!-- step 1: which item -->
+                <div id="step-item">
+                  <h2>Which item is yours?</h2>
+                  <p class="form-desc">
+                    Find the item on our <a href="listings.html">listings page</a> and paste its ID here, or select from the dropdown.
+                  </p>
+
+                  <div class="form-grid">
+                    <div class="form-group full">
+                      <label for="item-select">Select an item <span aria-hidden="true">*</span></label>
+                      <select id="item-select" name="item_id" required aria-required="true">
+                        <option value="">Choose an item</option>
+                        <option value="1">White AirPods Case (found Jan 14)</option>
+                        <option value="2">Navy Blue Hoodie (found Jan 15)</option>
+                        <option value="3">Hydro Flask Black 32oz (found Jan 15)</option>
+                        <option value="4">Gray JanSport Backpack (found Jan 16)</option>
+                        <option value="5">TI-84 Graphing Calculator (found Jan 17)</option>
+                        <option value="6">iPhone Cracked Screen (found Jan 17)</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div id="item-preview" class="item-preview-box" hidden aria-live="polite">
+                    <div class="item-preview-img" aria-hidden="true">
+                      <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/></svg>
+                    </div>
+                    <div class="item-preview-text">
+                      <span class="badge badge-amber" id="preview-category">Electronics</span>
+                      <h3 id="preview-title">White AirPods Case</h3>
+                      <p id="preview-desc">Found near table 7 in the cafeteria. Small scratch on lid.</p>
+                      <p class="item-card-date" id="preview-date">Found Jan 14, 2026</p>
+                    </div>
+                  </div>
+
+                  <div class="form-actions">
+                    <button type="button" class="btn btn-primary" id="continue-to-verify"
+                            aria-label="Continue to verification step">
+                      Continue to Verify
+                    </button>
+                  </div>
+                </div>
+
+                <!-- step 2: verification question -->
+                <div id="step-verify" hidden>
+                  <h2>Prove it's yours</h2>
+                  <p class="form-desc">
+                    Our system generated a question based on the item. Only the real owner would know the answer.
+                  </p>
+
+                  <div id="verify-loading" class="verify-loading" aria-live="polite">
+                    <div class="spinner" aria-hidden="true"></div>
+                    <p>Generating verification question...</p>
+                  </div>
+
+                  <div id="verify-question-wrap" hidden>
+                    <div class="verify-box" aria-labelledby="verify-question-label">
+                      <p class="verify-label" id="verify-question-label">Verification question</p>
+                      <p id="verify-question-text">What color is the wallpaper on your lock screen?</p>
+                    </div>
+
+                    <div class="form-group mt-3">
+                      <label for="verify-answer">Your answer <span aria-hidden="true">*</span></label>
+                      <textarea
+                        id="verify-answer"
+                        name="verification_answer"
+                        placeholder="Be as specific as possible..."
+                        required
+                        aria-required="true"
+                        aria-describedby="verify-hint"
+                        rows="3"
+                      ></textarea>
+                      <span id="verify-hint" class="field-hint">Your answer is kept private and only seen by the admin team.</span>
+                    </div>
+                  </div>
+
+                  <div class="form-actions">
+                    <button type="button" class="btn btn-ghost" id="back-to-item">Back</button>
+                    <button type="button" class="btn btn-primary" id="continue-to-info">Continue</button>
+                  </div>
+                </div>
+
+                <!-- step 3: contact info -->
+                <div id="step-info" hidden>
+                  <h2>Your contact info</h2>
+                  <p class="form-desc">So we can get in touch when your claim is reviewed.</p>
+
+                  <div class="form-grid">
+                    <div class="form-group">
+                      <label for="claimant-name">Full name <span aria-hidden="true">*</span></label>
+                      <input
+                        type="text"
+                        id="claimant-name"
+                        name="claimant_name"
+                        placeholder="Your full name"
+                        required
+                        aria-required="true"
+                        autocomplete="name"
+                      />
+                    </div>
+
+                    <div class="form-group">
+                      <label for="claimant-email">Email address <span aria-hidden="true">*</span></label>
+                      <input
+                        type="email"
+                        id="claimant-email"
+                        name="claimant_email"
+                        placeholder="you@williamfloyd.edu"
+                        required
+                        aria-required="true"
+                        autocomplete="email"
+                      />
+                    </div>
+
+                    <div class="form-group full">
+                      <label for="extra-notes">Anything else to add? <span class="label-hint">(optional)</span></label>
+                      <textarea
+                        id="extra-notes"
+                        name="extra_notes"
+                        placeholder="Any other details that prove ownership..."
+                        rows="3"
+                      ></textarea>
+                    </div>
+                  </div>
+
+                  <div id="claim-error" class="form-error-msg" role="alert" aria-live="assertive" hidden>
+                    <p></p>
+                  </div>
+
+                  <div class="form-actions">
+                    <button type="button" class="btn btn-ghost" id="back-to-verify">Back</button>
+                    <button type="submit" class="btn btn-primary form-submit" id="claim-submit">
+                      Submit Claim
+                    </button>
+                  </div>
+                </div>
+
+              </form>
+
+              <div id="claim-success" hidden aria-live="polite" tabindex="-1">
+                <div class="success-box">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                    <polyline points="22 4 12 14.01 9 11.01"/>
+                  </svg>
+                  <div>
+                    <p><strong>Claim submitted successfully!</strong></p>
+                    <p>An admin will review your answer and contact you by email within 1-2 school days. If approved, you can collect the item from the main office.</p>
+                  </div>
+                </div>
+                <div class="mt-4">
+                  <a href="listings.html" class="btn btn-secondary">Back to listings</a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <aside class="claim-sidebar" aria-label="Claim process information">
+
+            <div class="tips-card">
+              <h3>How claiming works</h3>
+              <ol class="how-claim-list" role="list">
+                <li>
+                  <span class="how-claim-num" aria-hidden="true">1</span>
+                  <span>Select the item you believe is yours from the list.</span>
+                </li>
+                <li>
+                  <span class="how-claim-num" aria-hidden="true">2</span>
+                  <span>Answer a custom question about the item that only the true owner would know.</span>
+                </li>
+                <li>
+                  <span class="how-claim-num" aria-hidden="true">3</span>
+                  <span>An admin reviews your answer and approves or follows up.</span>
+                </li>
+                <li>
+                  <span class="how-claim-num" aria-hidden="true">4</span>
+                  <span>Collect your item from the main office with your student ID.</span>
+                </li>
+              </ol>
+            </div>
+
+            <div class="tips-card tips-card-green">
+              <h3>Privacy notice</h3>
+              <p>
+                Your verification answer and contact info are kept private. They are only visible to
+                the admin team and are never posted publicly.
+              </p>
+            </div>
+
+          </aside>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <div class="nav-logo-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+          </div>
+          <div class="nav-logo-text">
+            <span>Lost &amp; Found</span>
+            <span>William Floyd High School</span>
+          </div>
+        </a>
+        <p>Helping the William Floyd community reunite students with their belongings since 2026.</p>
+      </div>
+      <div>
+        <h4>Quick links</h4>
+        <ul class="footer-links" role="list">
+          <li><a href="listings.html">Browse items</a></li>
+          <li><a href="report.html">Report an item</a></li>
+          <li><a href="claim.html">Claim an item</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Info</h4>
+        <ul class="footer-links" role="list">
+          <li><a href="admin.html">Admin login</a></li>
+          <li><a href="#">Main office</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 William Floyd High School Lost &amp; Found.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/form.js"></script>
+
+</body>
+</html>

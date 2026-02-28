@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Report a Found Item: Lost &amp; Found | William Floyd High</title>
+  <meta name="description" content="Found something on campus? Submit it here so the owner can claim it." />
+
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/pagestyles.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <!-- ── Navbar ── -->
+  <header>
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+      <div class="nav-inner">
+        <!-- logo -->
+        <a href="index.html" class="nav-logo" aria-label="Lost and Found, William Floyd High, go to home">
+          <div class="nav-logo-icon" aria-hidden="true">
+            
+            <!-- magnifying glass icon 
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="11" cy="11" r="7"/>
+              <line x1="16.5" y1="16.5" x2="22" y2="22"/>
+            </svg>
+            -->
+
+            <img src="assets/logofloy.jpg" viewBox="0 0 24 24" alt="William Floyd Logo">
+          </div>
+          <div class="nav-logo-text">
+            <span>Lost &amp; Found</span>
+            <span>William Floyd High School</span>
+          </div>
+        </a>
+
+        <ul class="nav-links" id="nav-links" role="list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="listings.html">Browse Items</a></li>
+          <li><a href="report.html" class="active" aria-current="page">Report Found Item</a></li>
+          <li><a href="claim.html">Claim an Item</a></li>
+          <li><a href="admin.html" class="btn-nav btn">Admin</a></li>
+        </ul>
+
+        <button class="nav-toggle" id="nav-toggle"
+                aria-controls="nav-links"
+                aria-expanded="false"
+                aria-label="Open menu">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <line x1="3" y1="6"  x2="21" y2="6"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- page hero -->
+    <div class="page-hero">
+      <div class="page-hero-inner">
+        <h1>Report a Found Item</h1>
+        <p>Fill in what you know about the item. A photo really helps owners recognize it.</p>
+      </div>
+    </div>
+
+    <!-- form section -->
+    <section class="report-section">
+      <div class="container">
+        <div class="report-layout">
+
+          <!-- left: the form -->
+          <div class="report-main">
+
+            <!-- step indicator -->
+            <div class="steps" role="list" aria-label="Form progress">
+              <div class="step active" role="listitem">
+                <span class="step-num" aria-label="Step 1 of 3, current">1</span>
+                <span class="step-label">Item details</span>
+              </div>
+              <div class="step-line"></div>
+              <div class="step" role="listitem">
+                <span class="step-num" aria-label="Step 2 of 3">2</span>
+                <span class="step-label">Photo</span>
+              </div>
+              <div class="step-line"></div>
+              <div class="step" role="listitem">
+                <span class="step-num" aria-label="Step 3 of 3">3</span>
+                <span class="step-label">Your info</span>
+              </div>
+            </div>
+
+            <!-- the form itself -->
+            <div class="form-panel">
+              <h2>Item details</h2>
+              <p class="form-desc">Describe what you found as clearly as you can.</p>
+
+              <form id="report-form" novalidate aria-label="Report found item form">
+
+                <!-- item name + category -->
+                <div class="form-grid">
+
+                  <div class="form-group">
+                    <label for="item-title">Item name <span aria-hidden="true">*</span></label>
+                    <input
+                      type="text"
+                      id="item-title"
+                      name="title"
+                      placeholder="e.g. Black AirPods Case"
+                      required
+                      aria-required="true"
+                      aria-describedby="title-hint"
+                    />
+                    <span id="title-hint" class="field-hint">Be specific. Eg; "iPhone 13 in a red case" beats "phone"</span>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="item-category">Category <span aria-hidden="true">*</span></label>
+                    <select id="item-category" name="category" required aria-required="true">
+                      <option value="">Select a category</option>
+                      <option value="electronics">Electronics</option>
+                      <option value="clothing">Clothing</option>
+                      <option value="bags">Bags &amp; Backpacks</option>
+                      <option value="stationery">Stationery &amp; Books</option>
+                      <option value="sports">Sports &amp; Gym</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group full">
+                    <label for="item-description">Description <span aria-hidden="true">*</span></label>
+                    <textarea
+                      id="item-description"
+                      name="description"
+                      placeholder="Color, brand, any identifying marks, condition…"
+                      required
+                      aria-required="true"
+                      rows="4"
+                    ></textarea>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="item-location">Where was it found? <span aria-hidden="true">*</span></label>
+                    <input
+                      type="text"
+                      id="item-location"
+                      name="location_found"
+                      placeholder="e.g. Cafeteria table 7"
+                      required
+                      aria-required="true"
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="item-date">Date found <span aria-hidden="true">*</span></label>
+                    <input
+                      type="date"
+                      id="item-date"
+                      name="date_found"
+                      required
+                      aria-required="true"
+                    />
+                  </div>
+
+                </div>
+
+                <hr class="divider" />
+
+                <!-- photo upload -->
+                <div class="form-group">
+                  <label>Photo <span class="label-hint">(recommended)</span></label>
+
+                  <div class="upload-zone" id="upload-zone" role="button" tabindex="0"
+                       aria-label="Upload a photo of the item. Click or drag and drop.">
+                    <!-- hidden real input -->
+                    <input
+                      type="file"
+                      id="item-photo"
+                      name="photo"
+                      accept="image/*"
+                      aria-label="Choose a photo file"
+                    />
+                    <!-- upload icon -->
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <polyline points="16 16 12 12 8 16"/>
+                      <line x1="12" y1="12" x2="12" y2="21"/>
+                      <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/>
+                    </svg>
+                    <p><span>Click to upload</span> or drag and drop</p>
+                    <small>PNG, JPG, WEBP up to 5MB</small>
+                  </div>
+
+                  <!-- photo preview (shown after selecting) -->
+                  <div class="upload-preview" id="upload-preview" aria-live="polite">
+                    <img id="preview-img" src="" alt="Preview of the uploaded item photo" />
+                    <button type="button" id="remove-photo" aria-label="Remove uploaded photo">×</button>
+                  </div>
+                </div>
+
+                <hr class="divider" />
+
+                <!-- finder info -->
+                <div class="form-grid">
+
+                  <div class="form-group">
+                    <label for="finder-name">Your name <span class="label-hint">(optional)</span></label>
+                    <input
+                      type="text"
+                      id="finder-name"
+                      name="finder_name"
+                      placeholder="First name is fine"
+                      autocomplete="given-name"
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="finder-email">Your email <span class="label-hint">(optional)</span></label>
+                    <input
+                      type="email"
+                      id="finder-email"
+                      name="finder_email"
+                      placeholder="you@gmail.com"
+                      autocomplete="email"
+                    />
+                  </div>
+
+                </div>
+
+                <!-- error message area (shown by JS if needed) -->
+                <div id="form-error" class="form-error-msg" role="alert" aria-live="assertive" hidden>
+                  <p></p>
+                </div>
+
+                <!-- submit -->
+                <div class="form-actions">
+                  <button type="submit" class="btn btn-primary btn-lg form-submit" id="submit-btn">
+                    Submit Found Item
+                  </button>
+                  <p class="form-note">
+                    Your submission will be reviewed before going live. Items are held at the main office.
+                  </p>
+                </div>
+
+              </form>
+
+              <!-- success message (hidden until form submits) -->
+              <div id="form-success" hidden aria-live="polite" tabindex="-1">
+                <div class="success-box">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                    <polyline points="22 4 12 14.01 9 11.01"/>
+                  </svg>
+                  <div>
+                    <p><strong>Thank you for reporting this item!</strong></p>
+                    <p>It will be reviewed by an admin and posted to the listings shortly. The item should be dropped off at the main office.</p>
+                  </div>
+                </div>
+                <div class="mt-4">
+                  <a href="listings.html" class="btn btn-secondary">Back to listings</a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- right: tips sidebar -->
+          <aside class="report-sidebar" aria-label="Tips for reporting">
+            <div class="tips-card">
+              <h3>Tips for a good report</h3>
+              <ul role="list">
+                <li>
+                  <span>A clear photo is the single most helpful thing you can add.</span>
+                </li>
+                <li>
+                  <span>Note any brand names, colors, or unique marks including scratches, stickers, etc.</span>
+                </li>
+                <li>
+                  <span>Be specific about where you found it. Eg; "cafeteria near the vending machines" is better than "inside."</span>
+                </li>
+                <li>
+                  <span>Don't include personal info visible inside the item. That's for the admin to verify privately.</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="tips-card tips-card-green">
+              <h3>Where to drop it off</h3>
+              <p>
+                After submitting, please bring the item to the
+                <strong>Main Office (Room 100)</strong>.
+                Open Monday–Friday, 7:30 AM – 4:00 PM.
+              </p>
+            </div>
+          </aside>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <div class="nav-logo-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+          </div>
+          <div class="nav-logo-text">
+            <span>Lost &amp; Found</span>
+            <span>William Floyd High School</span>
+          </div>
+        </a>
+        <p>Helping the William Floyd community reunite students with their belongings since 2026.</p>
+      </div>
+      <div>
+        <h4>Quick links</h4>
+        <ul class="footer-links" role="list">
+          <li><a href="listings.html">Browse items</a></li>
+          <li><a href="report.html">Report an item</a></li>
+          <li><a href="claim.html">Claim an item</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Info</h4>
+        <ul class="footer-links" role="list">
+          <li><a href="admin.html">Admin login</a></li>
+          <li><a href="#">Main office</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 William Floyd High School Lost &amp; Found.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/form.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lost &amp; Found: William Floyd High School</title>
+  <meta name="description" content="Reuniting students with their lost belongings at William Floyd High School." />
+
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/index.css" />
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <header>
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+      <div class="nav-inner">
+
+        <a href="index.html" class="nav-logo" aria-label="Lost and Found, William Floyd High, go to home">
+          <div class="nav-logo-icon" aria-hidden="true">
+            <img src="assets/logofloy-removebg-preview.png" alt="William Floyd Logo">
+          </div>
+          <div class="nav-logo-text">
+            <span>Lost &amp; Found</span>
+            <span>William Floyd High School</span>
+          </div>
+        </a>
+
+        <ul class="nav-links" id="nav-links" role="list">
+          <li><a href="index.html" class="active" aria-current="page">Home</a></li>
+          <li><a href="listings.html">Browse Items</a></li>
+          <li><a href="report.html">Report Found Item</a></li>
+          <li><a href="claim.html">Claim an Item</a></li>
+          <li><a href="admin.html" class="btn-nav btn">Admin</a></li>
+        </ul>
+
+        <button class="nav-toggle" id="nav-toggle"
+                aria-controls="nav-links"
+                aria-expanded="false"
+                aria-label="Open menu">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <line x1="3" y1="6"  x2="21" y2="6"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="hero-inner">
+
+        <div class="hero-text">
+          <span class="hero-eyebrow">William Floyd High School</span>
+          <h1 id="hero-heading">
+            Lost something?<br />
+            <em>Let's find it.</em>
+          </h1>
+          <p>
+            Our digital Lost &amp; Found makes it easy to report items you've
+            found on campus and reunite students with what's theirs quickly
+            and securely.
+          </p>
+          <div class="hero-actions">
+            <a href="listings.html" class="btn btn-primary btn-lg">Browse Found Items</a>
+            <a href="report.html"   class="btn btn-ghost   btn-lg">Report a Found Item</a>
+          </div>
+        </div>
+
+        <div class="hero-stats" role="region" aria-label="Site statistics">
+          <div class="hero-stat">
+            <span class="hero-stat-num">47</span>
+            <span class="hero-stat-label">Items found</span>
+          </div>
+          <div class="hero-stat-divider" aria-hidden="true"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">31</span>
+            <span class="hero-stat-label">Reunited</span>
+          </div>
+          <div class="hero-stat-divider" aria-hidden="true"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">16</span>
+            <span class="hero-stat-label">Awaiting claim</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section-how" aria-labelledby="how-heading">
+      <div class="container">
+
+        <div class="section-header">
+          <span class="section-label">How it works</span>
+          <h2 class="section-title" id="how-heading">Three simple steps</h2>
+          <p class="section-sub">
+            Whether you found something or lost something, the process takes
+            less than two minutes.
+          </p>
+        </div>
+
+        <ol class="how-steps" aria-label="Steps to claim or report an item">
+          <li class="how-step">
+            <div class="how-step-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                <circle cx="12" cy="13" r="4"/>
+              </svg>
+            </div>
+            <div class="how-step-num" aria-hidden="true">01</div>
+            <h3>Someone reports it</h3>
+            <p>
+              A student or staff member finds an item and submits it here
+              with a photo and description.
+            </p>
+          </li>
+
+          <div class="how-connector" aria-hidden="true"></div>
+
+          <li class="how-step">
+            <div class="how-step-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <circle cx="11" cy="11" r="7"/>
+                <line x1="16.5" y1="16.5" x2="22" y2="22"/>
+              </svg>
+            </div>
+            <div class="how-step-num" aria-hidden="true">02</div>
+            <h3>You browse &amp; find it</h3>
+            <p>
+              Search the listings by keyword, category, or date to find
+              your missing item.
+            </p>
+          </li>
+
+          <div class="how-connector" aria-hidden="true"></div>
+
+          <li class="how-step">
+            <div class="how-step-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                <polyline points="9 12 11 14 15 10"/>
+              </svg>
+            </div>
+            <div class="how-step-num" aria-hidden="true">03</div>
+            <h3>Verify &amp; collect</h3>
+            <p>
+              Answer a quick verification question to prove ownership, then
+              pick up your item from the main office.
+            </p>
+          </li>
+        </ol>
+
+      </div>
+    </section>
+
+    <section class="section-recent" aria-labelledby="recent-heading">
+      <div class="container">
+
+        <div class="section-header" style="text-align:left; max-width:100%; margin-bottom:2rem; display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+          <div>
+            <span class="section-label">Latest additions</span>
+            <h2 class="section-title" id="recent-heading" style="margin-bottom:0;">Recently found items</h2>
+          </div>
+          <a href="listings.html" class="btn btn-outline" aria-label="See all found items">View all items</a>
+        </div>
+
+        <ul class="items-grid" id="recent-items-grid" role="list" aria-label="Recently found items">
+          <!-- populated by index.js -->
+        </ul>
+
+      </div>
+    </section>
+
+    <section class="section-cta" aria-labelledby="cta-heading">
+      <div class="container">
+        <div class="cta-card">
+          <div class="cta-text">
+            <h2 id="cta-heading">Found something on campus?</h2>
+            <p>Help a fellow student out. It only takes a minute to report it.</p>
+          </div>
+          <a href="report.html" class="btn btn-primary btn-lg">Report a Found Item</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" aria-label="Lost and Found home">
+          <div class="nav-logo-icon" aria-hidden="true">
+            <img src="assets/logofloy-removebg-preview.png" alt="William Floyd Logo">
+          </div>
+          <div class="nav-logo-text">
+            <span>Lost &amp; Found</span>
+            <span>William Floyd High School</span>
+          </div>
+        </a>
+        <p>Helping the William Floyd community reunite students with their belongings since 2025.</p>
+      </div>
+
+      <div>
+        <h4>Quick links</h4>
+        <ul class="footer-links" role="list">
+          <li><a href="listings.html">Browse items</a></li>
+          <li><a href="report.html">Report an item</a></li>
+          <li><a href="claim.html">Claim an item</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Info</h4>
+        <ul class="footer-links" role="list">
+          <li><a href="admin.html">Admin login</a></li>
+          <li><a href="#">Main office</a></li>
+          <li><a href="#">Contact us</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 William Floyd High School Lost &amp; Found. Built with care for the William Floyd community.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

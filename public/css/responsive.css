@@ -1,0 +1,159 @@
+/* responsive.css - all breakpoints in one place
+   tablet = 900px, mobile = 600px */
+
+/* Tablet */
+@media (max-width: 900px) {
+  /* nav: hide links, show hamburger */
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: var(--nav-height);
+    left: 0;
+    right: 0;
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-200);
+    flex-direction: column;
+    align-items: stretch;
+    padding: .75rem 1.5rem 1.25rem;
+    gap: .125rem;
+    box-shadow: var(--shadow);
+  }
+
+  /* JS toggles this class to open the menu */
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-links a {
+    padding: .75rem .875rem;
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  /* footer: two columns */
+  .footer-inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+
+  /* admin: collapse sidebar into top bar */
+  .admin-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-sidebar {
+    border-right: none;
+    border-bottom: 1px solid var(--gray-200);
+    padding: 1rem 1.5rem;
+  }
+
+  .admin-sidebar h3 {
+    display: none;
+  }
+
+  .admin-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .375rem;
+  }
+
+  .admin-content {
+    padding: 1.5rem;
+  }
+
+  /* form: single column */
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-grid .full {
+    grid-column: 1;
+  }
+
+  .page-hero {
+    padding: 2.5rem 1.5rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .container {
+    padding: 0 1.25rem;
+  }
+
+  .nav-inner {
+    padding: 0 1.25rem;
+  }
+
+  /* footer: single column */
+  .footer-inner {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .items-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* search: stack vertically */
+  .search-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-row select {
+    flex: unset;
+    width: 100%;
+  }
+
+  .form-panel {
+    padding: 1.5rem 1.25rem;
+  }
+
+  /* steps: hide labels, just show the dots */
+  .step-label {
+    display: none;
+  }
+
+  /* admin stats: 2 columns on mobile */
+  .admin-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* admin table: allow horizontal scroll */
+  .table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* hide less important columns on small screens */
+  .admin-table .hide-mobile {
+    display: none;
+  }
+
+  .page-hero {
+    padding: 2rem 1.25rem;
+  }
+
+  /* buttons: full width on mobile forms */
+  .form-submit {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* hide school name on tiny screens */
+  .nav-logo-text span:last-child {
+    display: none;
+  }
+}

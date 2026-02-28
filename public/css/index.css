@@ -1,0 +1,233 @@
+/* Hero section */
+.hero {
+  background: var(--green-dark);
+  padding: 5rem 2rem 4rem;
+  color: var(--white);
+}
+
+.hero-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.hero-eyebrow {
+  display: inline-block;
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.5);
+  margin-bottom: 1.25rem;
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 1.05;
+  max-width: 640px;
+  margin-bottom: 1.5rem;
+}
+
+.hero h1 em {
+  color: #a3d9b5;
+}
+
+.hero > .hero-inner > p {
+  font-size: 1.0625rem;
+  color: rgba(255,255,255,.75);
+  max-width: 480px;
+  line-height: 1.7;
+  margin-bottom: 2.25rem;
+}
+
+.hero-actions {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* ghost buttons on dark background */
+.hero-actions .btn-ghost {
+  border-color: rgba(255,255,255,.3);
+  color: rgba(255,255,255,.85);
+}
+.hero-actions .btn-ghost:hover {
+  background: rgba(255,255,255,.1);
+  border-color: rgba(255,255,255,.5);
+  color: var(--white);
+}
+
+/* stats strip */
+.hero-stats {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  margin-top: 3.5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid rgba(255,255,255,.12);
+  flex-wrap: wrap;
+}
+
+.hero-stat-num {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 2.25rem;
+  color: var(--white);
+  line-height: 1;
+}
+
+.hero-stat-label {
+  display: block;
+  font-size: .8125rem;
+  color: rgba(255,255,255,.5);
+  margin-top: .25rem;
+}
+
+.hero-stat-divider {
+  width: 1px;
+  height: 40px;
+  background: rgba(255,255,255,.15);
+}
+
+/* How it works */
+.section-how {
+  padding: 6rem 2rem;
+  background: var(--off-white);
+}
+
+.how-steps {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  list-style: none;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.how-connector {
+  flex: 1;
+  height: 2px;
+  background: var(--gray-200);
+  margin-top: 2rem;
+}
+
+.how-step {
+  flex: 0 0 220px;
+  text-align: center;
+}
+
+.how-step-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--green-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto .875rem;
+}
+
+.how-step-icon svg {
+  width: 24px;
+  height: 24px;
+  stroke: var(--green);
+  fill: none;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.how-step-num {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--gray-200);
+  line-height: 1;
+  margin-bottom: .375rem;
+}
+
+.how-step h3 {
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  color: var(--gray-900);
+  margin-bottom: .5rem;
+}
+
+.how-step p {
+  font-size: .875rem;
+  color: var(--gray-600);
+  line-height: 1.65;
+}
+
+/* Recent items */
+.section-recent {
+  padding: 5rem 2rem;
+  background: var(--white);
+}
+
+/* CTA strip */
+.section-cta {
+  padding: 4rem 2rem 5rem;
+  background: var(--off-white);
+}
+
+.cta-card {
+  background: var(--green);
+  border-radius: var(--radius-lg);
+  padding: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.cta-card h2 {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  color: var(--white);
+  margin-bottom: .375rem;
+}
+
+.cta-card p {
+  color: rgba(255,255,255,.8);
+  font-size: .9375rem;
+}
+
+/* white primary button on green background */
+.cta-card .btn-primary {
+  background: var(--white);
+  color: var(--green-dark);
+}
+
+.cta-card .btn-primary:hover {
+  background: var(--off-white);
+}
+
+/* Responsive tweaks for home only */
+@media (max-width: 760px) {
+  .how-steps {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .how-connector {
+    width: 2px;
+    height: 32px;
+    flex: unset;
+    margin: 0;
+  }
+
+  .how-step {
+    flex: unset;
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .cta-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem 1.5rem;
+  }
+}
