@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard: Lost &amp; Found | William Floyd High</title>
+  <meta name="description" content="Admin view to review, approve, and manage found item postings and claims." />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/pagestyles.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <!-- Login overlay (shown when no key is stored) -->
+  <div id="login-overlay" class="login-overlay" role="dialog" aria-modal="true" aria-labelledby="login-title" hidden>
+    <div class="login-card">
+      <div class="nav-logo-icon" style="margin:0 auto 1.25rem;" aria-hidden="true">
+        <svg viewBox="0 0 24 24" style="width:20px;height:20px;stroke:white;fill:none;stroke-width:2;stroke-linecap:round;">
+          <circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/>
+        </svg>
+      </div>
+      <h1 id="login-title" style="font-family:var(--font-display);font-size:1.5rem;margin-bottom:.375rem;text-align:center;">Admin Access</h1>
+      <p style="font-size:.875rem;color:var(--gray-600);margin-bottom:1.5rem;text-align:center;">Enter your admin key to continue.</p>
+
+      <form id="login-form" novalidate aria-label="Admin login form" onsubmit="return false">
+        <div class="form-group" style="margin-bottom:1rem;">
+          <label for="admin-key-input">Admin key</label>
+          <input type="password" id="admin-key-input" placeholder="Enter admin key…"
+                 required aria-required="true" autocomplete="current-password" />
+        </div>
+        <div id="login-error" class="form-error-msg" hidden role="alert">
+          <p>Incorrect key. Try again.</p>
+        </div>
+        <button type="submit" id="login-btn" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:1rem;">
+          Log In
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ── Navbar ── -->
+  <header>
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+      <div class="nav-inner">
+        <!-- logo -->
+        <a href="index.html" class="nav-logo" aria-label="Lost and Found, William Floyd High, go to home">
+          <div class="nav-logo-icon" aria-hidden="true">
+            
+            <!-- magnifying glass icon 
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="11" cy="11" r="7"/>
+              <line x1="16.5" y1="16.5" x2="22" y2="22"/>
+            </svg>
+            -->
+
+            <img src="assets/logofloy-removebg-preview.png" viewBox="0 0 24 24" alt="William Floyd Logo">
+          </div>
+          <div class="nav-logo-text">
+            <span>Lost &amp; Found</span>
+            <span>William Floyd High School</span>
+          </div>
+        </a>
+        <ul class="nav-links" id="nav-links" role="list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="listings.html">Browse Items</a></li>
+          <li><a href="report.html">Report Found Item</a></li>
+          <li><a href="claim.html">Claim an Item</a></li>
+          <li><a href="admin.html" class="btn-nav btn active" aria-current="page">Admin</a></li>
+        </ul>
+        <button class="nav-toggle" id="nav-toggle" aria-controls="nav-links" aria-expanded="false" aria-label="Open menu">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <line x1="3" y1="6"  x2="21" y2="6"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ── Dashboard (hidden until logged in) ── -->
+  <main id="main">
+    <div id="admin-dashboard" hidden>
+      <div class="admin-layout">
+
+        <!-- Sidebar -->
+        <aside class="admin-sidebar" aria-label="Admin navigation">
+          <h3>Admin panel</h3>
+          <nav class="admin-nav" aria-label="Admin sections">
+            <a href="#section-items" class="active" aria-current="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12h-6l-2 3H10l-2-3H2"/><path d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z"/></svg>
+              Pending Items
+              <span class="admin-nav-count" id="badge-pending-items" aria-label="pending items">0</span>
+            </a>
+            <a href="#section-claims">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+              Claims
+              <span class="admin-nav-count" id="badge-pending-claims" aria-label="pending claims">0</span>
+            </a>
+            <a href="#section-all">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+              All Items
+            </a>
+          </nav>
+        </aside>
+
+        <!-- Content -->
+        <div class="admin-content">
+
+          <!-- Page header -->
+          <div class="admin-page-header">
+            <div>
+              <h1 class="admin-page-title">Dashboard</h1>
+              <p class="admin-page-sub">William Floyd High: Lost &amp; Found admin</p>
+            </div>
+            <button class="btn btn-ghost btn-sm" id="logout-btn" aria-label="Log out of admin panel">Log out</button>
+          </div>
+
+          <!-- Stats -->
+          <div class="admin-stats" role="region" aria-label="Summary statistics">
+            <div class="stat-card">
+              <div class="stat-num" id="stat-total" aria-label="total items">—</div>
+              <div class="stat-label">Total items</div>
+            </div>
+            <div class="stat-card stat-card-amber">
+              <div class="stat-num" id="stat-pending">—</div>
+              <div class="stat-label">Pending review</div>
+            </div>
+            <div class="stat-card stat-card-green">
+              <div class="stat-num" id="stat-claimed">—</div>
+              <div class="stat-label">Reunited</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-num" id="stat-claims">—</div>
+              <div class="stat-label">Open claims</div>
+            </div>
+          </div>
+
+          <!-- ── Pending items ── -->
+          <section id="section-items" aria-labelledby="pending-heading">
+            <div class="admin-section-header">
+              <h2 id="pending-heading">Pending Item Submissions</h2>
+            </div>
+            <div class="table-scroll">
+              <table class="admin-table" aria-label="Pending item submissions">
+                <thead>
+                  <tr>
+                    <th scope="col">Item</th>
+                    <th scope="col">Category</th>
+                    <th scope="col" class="hide-mobile">Location</th>
+                    <th scope="col" class="hide-mobile">Date found</th>
+                    <th scope="col">Submitted</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="pending-items-body">
+                  <tr><td colspan="6" style="text-align:center;color:var(--gray-400);padding:2rem;">Loading…</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- ── Pending claims ── -->
+          <section id="section-claims" aria-labelledby="claims-heading">
+            <div class="admin-section-header">
+              <h2 id="claims-heading">Pending Claims</h2>
+            </div>
+            <div class="table-scroll">
+              <table class="admin-table" aria-label="Pending item claims">
+                <thead>
+                  <tr>
+                    <th scope="col">Item claimed</th>
+                    <th scope="col">Claimant</th>
+                    <th scope="col" class="hide-mobile">Verification Q &amp; A</th>
+                    <th scope="col">Submitted</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="pending-claims-body">
+                  <tr><td colspan="5" style="text-align:center;color:var(--gray-400);padding:2rem;">Loading…</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- ── All items ── -->
+          <section id="section-all" aria-labelledby="all-heading">
+            <div class="admin-section-header">
+              <h2 id="all-heading">All Items</h2>
+            </div>
+
+            <!-- Filter bar -->
+            <div class="admin-filter-row">
+              <div class="search-input-wrap" style="max-width:320px;">
+                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/>
+                </svg>
+                <input type="search" id="admin-search" placeholder="Search items…" aria-label="Search all items" />
+              </div>
+              <label for="admin-filter-status" class="sr-only">Filter by status</label>
+              <select id="admin-filter-status" aria-label="Filter by status">
+                <option value="">All statuses</option>
+                <option value="pending">Pending</option>
+                <option value="approved">Approved</option>
+                <option value="claimed">Claimed</option>
+                <option value="rejected">Rejected</option>
+              </select>
+            </div>
+
+            <div class="table-scroll">
+              <table class="admin-table" aria-label="All found items">
+                <thead>
+                  <tr>
+                    <th scope="col">Item</th>
+                    <th scope="col">Category</th>
+                    <th scope="col" class="hide-mobile">Location</th>
+                    <th scope="col">Status</th>
+                    <th scope="col" class="hide-mobile">Date found</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="all-items-body">
+                  <tr><td colspan="6" style="text-align:center;color:var(--gray-400);padding:2rem;">Loading…</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+        </div><!-- /admin-content -->
+      </div><!-- /admin-layout -->
+    </div><!-- /admin-dashboard -->
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <div class="nav-logo-icon" aria-hidden="true"><img src="assets/logofloy-removebg-preview.png" viewBox="0 0 24 24" alt="William Floyd Logo"></div>
+          <div class="nav-logo-text"><span>Lost &amp; Found</span><span>William Floyd High School</span></div>
+        </a>
+        <p>Helping the William Floyd community reunite students with their belongings since 2026.</p>
+      </div>
+      <div>
+        <h4>Quick links</h4>
+        <ul class="footer-links" role="list">
+          <li><a href="listings.html">Browse items</a></li>
+          <li><a href="report.html">Report an item</a></li>
+          <li><a href="claim.html">Claim an item</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Info</h4>
+        <ul class="footer-links" role="list">
+          <li><a href="admin.html">Admin login</a></li>
+          <li><a href="#">Main office</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 William Floyd High School Lost &amp; Found.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/admin.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,250 @@
+/* responsive.css: tablet = 900px, mobile = 600px */
+
+/* Tablet */
+@media (max-width: 900px) {
+
+  /* slide-in drawer from the right */
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 280px;
+    background: var(--white);
+    flex-direction: column;
+    align-items: stretch;
+    padding: 5rem 1.5rem 2rem;
+    gap: 3rem;
+    box-shadow: -4px 0 24px rgba(0,0,0,.12);
+    transform: translateX(100%);
+    transition: transform .28s cubic-bezier(.4, 0, .2, 1);
+    z-index: 200;
+    display: flex;
+  }
+
+  .nav-links.open {
+    transform: translateX(0);
+  }
+
+  .nav-links a {
+    padding: 1rem 1rem;
+    border-radius: var(--radius);
+    font-size: 1rem;
+  }
+
+  .nav-links a:hover {
+    background: var(--off-white);
+  }
+
+  /* dim overlay behind the drawer */
+  .nav-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.35);
+    z-index: 150;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .28s ease;
+  }
+
+  .nav-backdrop.open {
+    opacity: 1;
+    z-index: 75;
+    pointer-events: auto;
+  }
+
+  .nav-toggle {
+    display: flex;
+    z-index: 300;
+  }
+
+  /* footer: two columns */
+  .footer-inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+
+  /* admin: stack layout vertically */
+  .admin-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-sidebar {
+    border-right: none;
+    border-bottom: 1px solid var(--gray-200);
+    padding: 1rem 1.5rem;
+    position: sticky;
+    top: 0;
+    background: var(--white);
+    z-index: 10;
+  }
+
+  .admin-sidebar h3 {
+    display: none;
+  }
+
+  .admin-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .375rem;
+  }
+
+  .admin-nav a {
+    font-size: .8125rem;
+    padding: .5rem .75rem;
+  }
+
+  .admin-content {
+    padding: 1.5rem;
+    min-width: 0;
+  }
+
+  .admin-page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .75rem;
+  }
+
+  .admin-page-title {
+    font-size: 1.375rem;
+  }
+
+  /* form: single column */
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-grid .full {
+    grid-column: 1;
+  }
+
+  .page-hero {
+    padding: 2.5rem 1.5rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .container {
+    padding: 0 1.25rem;
+  }
+
+  .nav-inner {
+    padding: 0 1.25rem;
+  }
+
+  /* footer: single column */
+  .footer-inner {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .items-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* search: stack vertically */
+  .search-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-row select {
+    flex: unset;
+    width: 100%;
+  }
+
+  .form-panel {
+    padding: 1.5rem 1.25rem;
+  }
+
+  /* steps: hide labels, just show the dots */
+  .step-label {
+    display: none;
+  }
+
+  /* admin stats: 2 columns on mobile */
+  .admin-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* admin table scrolls horizontally, never clips */
+  .table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* tighten up table cells so they dont waste space */
+  .admin-table th,
+  .admin-table td {
+    padding: .625rem .75rem;
+    font-size: .8125rem;
+    white-space: nowrap;
+  }
+
+  .table-item-cell {
+    gap: .5rem;
+  }
+
+  .table-item-name {
+    max-width: 140px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* stack approve/reject buttons vertically */
+  .table-actions {
+    display: flex;
+    flex-direction: column;
+    gap: .375rem;
+  }
+
+  /* admin filter row: stack on mobile */
+  .admin-filter-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .admin-filter-row .search-input-wrap {
+    max-width: 100%;
+  }
+
+  .admin-filter-row select {
+    width: 100%;
+  }
+
+  /* hide less important columns on small screens */
+  .admin-table .hide-mobile {
+    display: none;
+  }
+
+  .page-hero {
+    padding: 2rem 1.25rem;
+  }
+
+  /* buttons: full width on mobile forms */
+  .form-submit {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* hide school name on tiny screens */
+  .nav-logo-text span:last-child {
+    display: none;
+  }
+
+  /* drawer is full width on small phones */
+  .nav-links {
+    width: 100%;
+  }
+}
