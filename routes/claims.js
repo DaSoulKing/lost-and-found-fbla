@@ -54,6 +54,7 @@ router.post('/question', async (req, res) => {
     if (n8nUrl) {
       try {
         // call the n8n workflow, it calls the AI and returns a question
+        console.log("chat im trying");
         const n8nRes = await fetch(n8nUrl, {
           method:  'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -75,6 +76,7 @@ router.post('/question', async (req, res) => {
         }
       } catch (n8nErr) {
         // n8n failed, log it but fall through to the fallback
+        console.log("chat we failed");
         console.warn('n8n webhook failed, using fallback question:', n8nErr.message);
       }
     }
