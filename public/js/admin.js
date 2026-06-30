@@ -241,7 +241,17 @@ document.addEventListener('DOMContentLoaded', () => {
       const input  = document.querySelector(`[data-detail-for="${id}"]`);
       const detail = input ? input.value.trim() : '';
       if (!detail && !confirm('No private detail entered. Verification will be weak. Approve anyway?')) return;
-      if (detail) await saveItemDetail(id, detail);
+
+      // if a detail was entered, save it FIRST and only continue if it actually saved.
+      // otherwise the item gets approved with no private_detail and the claim page
+      // silently falls back to the canned question.
+      if (detail) {
+        const saved = await saveItemDetail(id, detail);
+        if (!saved) {
+          alert('Could not save the private detail. Item was not approved. Check the console for the error.');
+          return;
+        }
+      }
       await updateItemStatus(id, 'approved');
     }
     if (action === 'reject')        await updateItemStatus(id, 'rejected');
@@ -250,15 +260,24 @@ document.addEventListener('DOMContentLoaded', () => {
     if (action === 'reject-claim')  await updateClaimStatus(id, 'rejected');
   });
 
+  // returns true on success, false on failure, so the approve flow can abort
+  // instead of approving an item whose detail never saved.
   async function saveItemDetail(id, private_detail) {
     try {
-      await apiFetch(`/api/admin/items/${id}/detail`, {
+      const res = await apiFetch(`/api/admin/items/${id}/detail`, {
         method: 'PATCH',
         json:   true,
         body:   JSON.stringify({ private_detail }),
       });
+      if (!res.ok) {
+        const text = await res.text();
+        console.error('saveItemDetail failed:', res.status, text);
+        return false;
+      }
+      return true;
     } catch (err) {
       console.error('saveItemDetail failed:', err.message);
+      return false;
     }
   }
 

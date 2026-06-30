@@ -142,6 +142,7 @@ module.exports = {
   getItemById,
   insertItem,
   updateItemStatus,
+  updateItemDetail,
   deleteItem,
   getAllClaims,
   getClaimsByItem,

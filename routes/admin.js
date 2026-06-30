@@ -1,11 +1,12 @@
 // admin-only endpoints, all require the x-admin-key header
 //
-//  GET    /api/admin/stats        dashboard counts
-//  GET    /api/admin/items        all items (filterable by status/search)
-//  PATCH  /api/admin/items/:id    update item status
-//  DELETE /api/admin/items/:id    delete an item
-//  GET    /api/admin/claims       all claims (filterable)
-//  PATCH  /api/admin/claims/:id   update claim status
+//  GET    /api/admin/stats              dashboard counts
+//  GET    /api/admin/items              all items (filterable by status/search)
+//  PATCH  /api/admin/items/:id          update item status
+//  PATCH  /api/admin/items/:id/detail   save the private verification detail
+//  DELETE /api/admin/items/:id          delete an item
+//  GET    /api/admin/claims             all claims (filterable)
+//  PATCH  /api/admin/claims/:id         update claim status
 
 const express   = require('express');
 const router    = express.Router();
@@ -40,6 +41,32 @@ router.get('/items', async (req, res) => {
   } catch (err) {
     console.error('GET /api/admin/items error:', err.message);
     res.status(500).json({ error: 'Failed to fetch items.' });
+  }
+});
+
+
+// PATCH /api/admin/items/:id/detail
+// body: { private_detail: "..." }
+// IMPORTANT: this is declared BEFORE /items/:id so the router does not
+// try to match "detail" as an :id segment.
+router.patch('/items/:id/detail', async (req, res) => {
+  try {
+    const { private_detail } = req.body;
+
+    if (typeof private_detail !== 'string' || !private_detail.trim()) {
+      return res.status(400).json({ error: 'private_detail is required.' });
+    }
+
+    const { rows } = await db.updateItemDetail(req.params.id, private_detail.trim());
+
+    if (!rows.length) {
+      return res.status(404).json({ error: 'Item not found.' });
+    }
+
+    res.json({ message: 'Private detail saved.', item: rows[0] });
+  } catch (err) {
+    console.error('PATCH /api/admin/items/:id/detail error:', err.message);
+    res.status(500).json({ error: 'Failed to save private detail.' });
   }
 });
 
