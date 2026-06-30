@@ -42,20 +42,26 @@ router.post('/question', async (req, res) => {
 
     const item = rows[0];
 
+    // nothing hidden to ask about, use the canned category question
+    // (also avoids the "loading forever then default" wait since there's nothing to generate)
+    if (!item.private_detail) {
+      return res.json({ question: getDefaultQuestion(item.category), source: 'fallback' });
+    }
+
     // try n8n webhook first
     const n8nUrl = process.env.N8N_WEBHOOK_URL;
 
     if (n8nUrl) {
       try {
-        // call the n8n workflow, it calls Claude and returns a question
+        // call the n8n workflow, it calls the AI and returns a question
         const n8nRes = await fetch(n8nUrl, {
           method:  'POST',
           headers: { 'Content-Type': 'application/json' },
           body:    JSON.stringify({
-            item_id:     item.id,
-            title:       item.title,
-            description: item.description,
-            category:    item.category,
+            item_id:        item.id,
+            title:          item.title,
+            category:       item.category,
+            private_detail: item.private_detail,
           }),
           // don't wait more than 8 seconds
           signal: AbortSignal.timeout(8000),

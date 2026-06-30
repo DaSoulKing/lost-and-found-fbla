@@ -29,19 +29,7 @@ router.get('/stats', async (req, res) => {
   }
 });
 
-// PATCH /api/admin/items/:id/detail
-// body: { private_detail: "..." }
-router.patch('/items/:id/detail', async (req, res) => {
-  try {
-    const { private_detail } = req.body;
-    const { rows } = await db.updateItemDetail(req.params.id, private_detail || null);
-    if (!rows.length) return res.status(404).json({ error: 'Item not found.' });
-    res.json({ message: 'Verification detail saved.', item: rows[0] });
-  } catch (err) {
-    console.error('PATCH /api/admin/items/:id/detail error:', err.message);
-    res.status(500).json({ error: 'Failed to save verification detail.' });
-  }
-});
+
 
 // GET /api/admin/items?status=pending&search=keyword
 router.get('/items', async (req, res) => {
