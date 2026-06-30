@@ -65,7 +65,7 @@ router.post('/question', async (req, res) => {
             private_detail: item.private_detail,
           }),
           // don't wait more than 8 seconds
-          signal: AbortSignal.timeout(8000),
+          signal: AbortSignal.timeout(10000),
         });
 
         if (n8nRes.ok) {
