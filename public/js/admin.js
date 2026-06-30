@@ -135,6 +135,9 @@ document.addEventListener('DOMContentLoaded', () => {
           <td class="hide-mobile">${formatDate(item.date_found)}</td>
           <td>${timeAgo(item.created_at)}</td>
           <td>
+            <input class="verify-detail-input" type="text" data-detail-for="${item.id}"
+                   placeholder="Private detail only the owner knows…"
+                   style="width:100%;margin-bottom:.5rem;padding:.4rem;font-size:.8rem;" />
             <div class="table-actions">
               <button class="btn btn-sm btn-primary" data-action="approve" data-id="${item.id}" aria-label="Approve ${escHtml(item.title)}">Approve</button>
               <button class="btn btn-sm btn-ghost"   data-action="reject"  data-id="${item.id}" aria-label="Reject ${escHtml(item.title)}">Reject</button>
@@ -234,12 +237,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const action = btn.dataset.action;
     const id     = btn.dataset.id;
 
-    if (action === 'approve')       await updateItemStatus(id, 'approved');
+    if (action === 'approve') {
+      const input  = document.querySelector(`[data-detail-for="${id}"]`);
+      const detail = input ? input.value.trim() : '';
+      if (!detail && !confirm('No private detail entered. Verification will be weak. Approve anyway?')) return;
+      if (detail) await saveItemDetail(id, detail);
+      await updateItemStatus(id, 'approved');
+    }
     if (action === 'reject')        await updateItemStatus(id, 'rejected');
     if (action === 'delete')        await deleteItem(id, btn.closest('tr'));
     if (action === 'approve-claim') await updateClaimStatus(id, 'approved');
     if (action === 'reject-claim')  await updateClaimStatus(id, 'rejected');
   });
+
+  async function saveItemDetail(id, private_detail) {
+    try {
+      await apiFetch(`/api/admin/items/${id}/detail`, {
+        method: 'PATCH',
+        json:   true,
+        body:   JSON.stringify({ private_detail }),
+      });
+    } catch (err) {
+      console.error('saveItemDetail failed:', err.message);
+    }
+  }
 
   async function updateItemStatus(id, status) {
     try {

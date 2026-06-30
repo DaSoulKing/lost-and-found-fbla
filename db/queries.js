@@ -128,6 +128,13 @@ const getStats = () =>
     FROM items
   `);
 
+  // save the private verification detail (admin only)
+const updateItemDetail = (id, private_detail) =>
+  pool.query(
+    'UPDATE items SET private_detail = $1 WHERE id = $2 RETURNING *',
+    [private_detail, id]
+  );
+
 
 module.exports = {
   getApprovedItems,
